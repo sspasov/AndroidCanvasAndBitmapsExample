@@ -71,6 +71,14 @@ public class CustomBitmap implements Parcelable {
         return this.y;
     }
 
+    public float getHalfHeight() {
+        return halfHeight;
+    }
+
+    public float getHalfWidth() {
+        return halfWidth;
+    }
+
     public boolean isInBitmap(float x, float y) {
         calculateBoundaries();
         float f1 = x - halfWidth;

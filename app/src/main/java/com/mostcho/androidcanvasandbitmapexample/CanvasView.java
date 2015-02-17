@@ -5,13 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
-
-import com.mostcho.androidcanvasandbitmapexample.R;
 
 import java.util.ArrayList;
 
@@ -27,8 +26,6 @@ public class CanvasView extends View
     Context context;
     boolean hasItemOnFocus;
     int itemOnFocus;
-    private Bitmap mBitmap;
-    private Canvas mCanvas;
     private Paint mPaint;
     private float mX;
     private float mY;
@@ -38,7 +35,7 @@ public class CanvasView extends View
         this.context = context;
         setSaveEnabled(true);
         this.mPaint = new Paint();
-        this.addedBitmaps = new ArrayList<CustomBitmap>();
+        this.addedBitmaps = new ArrayList<>();
         this.hasItemOnFocus = false;
     }
 
@@ -49,9 +46,9 @@ public class CanvasView extends View
             mX = x;
             mY = y;
             if ( (x >= canvasX)
-                    && (x < canvasXend - addedBitmaps.get(itemOnFocus).getBitmap().getWidth() / 2)
+                    && (x < canvasXend - addedBitmaps.get(itemOnFocus).getHalfWidth())
                     && (y >= canvasY)
-                    && (y < canvasYend - addedBitmaps.get(itemOnFocus).getBitmap().getHeight() / 2) ) {
+                    && (y < canvasYend - addedBitmaps.get(itemOnFocus).getHalfHeight()) ) {
                 Log.d("MOVE", "x: " + x + " y: " + y);
                 if (hasItemOnFocus) {
                     addedBitmaps.get(itemOnFocus).setX(mX);
@@ -85,7 +82,9 @@ public class CanvasView extends View
     }
 
     public void addNewElement() {
-        CustomBitmap localCustomBitmap = new CustomBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher), getWidth()/2, getHeight()/2);
+        float canvasCenterX = getWidth()/2;
+        float canvasCenterY = getHeight()/2;
+        CustomBitmap localCustomBitmap = new CustomBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher), canvasCenterX, canvasCenterY);
         addedBitmaps.add(localCustomBitmap);
         invalidate();
     }
@@ -115,8 +114,8 @@ public class CanvasView extends View
 
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        mCanvas = new Canvas(mBitmap);
+        Bitmap mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Canvas mCanvas = new Canvas(mBitmap);
         canvasX = getX();
         canvasXend = (canvasX + w);
         canvasY = getY();
@@ -125,7 +124,7 @@ public class CanvasView extends View
         Log.d("INITIAL", "canvasY: " + canvasY + " canvasYend: " +canvasYend);
     }
 
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         float x = event.getX();
         float y = event.getY();
 
