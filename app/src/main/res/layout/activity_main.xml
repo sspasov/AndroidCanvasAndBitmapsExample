@@ -8,7 +8,7 @@
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.javacodegeeks.androidcanvasandbitmapexample.CanvasView
+    <com.mostcho.androidcanvasandbitmapexample.CanvasView
         android:id="@+id/signature_canvas"
         android:background="#ffffffff"
         android:layout_width="match_parent"

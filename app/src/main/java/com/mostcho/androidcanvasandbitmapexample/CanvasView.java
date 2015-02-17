@@ -1,4 +1,4 @@
-package com.javacodegeeks.androidcanvasandbitmapexample;
+package com.mostcho.androidcanvasandbitmapexample;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.javacodegeeks.androidcanvasandbitmapexample.R;
+import com.mostcho.androidcanvasandbitmapexample.R;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.javacodegeeks.androidcanvasandbitmapexample;
+package com.mostcho.androidcanvasandbitmapexample;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

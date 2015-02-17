@@ -1,11 +1,11 @@
-package com.javacodegeeks.androidcanvasandbitmapexample;
+package com.mostcho.androidcanvasandbitmapexample;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.javacodegeeks.androidcanvasandbitmapexample.R;
+import com.mostcho.androidcanvasandbitmapexample.R;
 
 import java.util.ArrayList;
 
